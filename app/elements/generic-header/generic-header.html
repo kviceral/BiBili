@@ -1,0 +1,80 @@
+<!--
+@license
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+
+
+<dom-module id="generic-header">
+  <template>
+    <style>
+      :host {
+        display: block;
+        padding-bottom: 40px;
+      }
+      
+      .header .title {
+        top: 30px;
+        left: 100px;
+      }
+      
+      .header .big {
+        font-size: 26px;
+        padding: 8px 0 16px;
+      }
+      
+      .header .small {
+        font-size: 14px;
+        padding-bottom: 8px;
+        color: var(--google-grey-500);
+      }
+      
+      paper-card {
+        width: 100%;
+      }
+      
+    </style>
+    
+    <paper-card elevation="2" class="header">
+      <div class="card-content">
+        <div class="title">
+          <div class="big">{{title}}</div>
+          <div class="small">{{description}}</div>
+        </div>  
+      </div>
+      <div class="card-actions">
+        <paper-icon-button icon="filter-list" title="filter"></paper-icon-button>
+        <paper-icon-button icon="add-circle" title="add"></paper-icon-button>
+      </div>
+    </paper-card>
+    
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'generic-header',
+
+        properties: {
+          title: {
+            type: String,
+            value: 'Header!'
+          },
+          description: {
+            type: String,
+            value: 'Lorem ipsum dolor sit amet.'
+          }       
+        },
+
+        ready: function() {
+          
+        }
+      });
+    })();
+  </script>
+</dom-module>
