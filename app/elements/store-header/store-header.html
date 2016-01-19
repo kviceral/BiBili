@@ -1,0 +1,152 @@
+<!--
+@license
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+
+<dom-module id="store-header">
+  <template>
+    <style>
+      :host {
+        display: block;
+        padding-bottom: 40px;
+      }
+      
+      .header .title {
+        top: 30px;
+        left: 100px;
+      }
+      
+      .header .big {
+        font-size: 26px;
+        padding: 8px 0 16px;
+      }
+      
+      .header .small {
+        font-size: 14px;
+        padding-bottom: 8px;
+        color: var(--google-grey-500);
+      }
+      
+      .buttons paper-icon-button {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+      
+      paper-card {
+        width: 100%;
+      }
+      
+      paper-icon-button.green {
+        color: var(--paper-green-500);
+        --paper-icon-button-ink-color: var(--paper-indigo-500);
+      }
+      
+      paper-icon-button.red {
+        color: var(--paper-red-500);
+        --paper-icon-button-ink-color: var(--paper-indigo-500);
+      }
+      
+      paper-icon-button.gray {
+        color: var(--google-grey-500);
+        --paper-icon-button-ink-color: var(--paper-indigo-500);
+      }
+      
+    </style>
+    
+    <paper-card elevation="2" class="header">
+      <div class="card-content">
+        <div class="title">
+          <div class="big">{{title}}</div>
+          <div class="small">{{description}}</div>
+        </div>  
+      </div>
+      <div class="card-actions">
+        <paper-icon-button 
+          icon="filter-list" 
+          title="Filter the list below">
+        </paper-icon-button>
+        <paper-icon-button 
+          icon="add-circle" 
+          title="Add an item"
+          data-dialog="add-store-actions"
+          onclick="clickHandler(event)">
+        </paper-icon-button>
+      </div>
+    </paper-card>
+    
+    <paper-dialog id="add-store-actions" 
+      entry-animation="scale-up-animation" 
+      exit-animation="fade-out-animation" 
+      with-backdrop>
+      <h2>Add a Store</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <div class="buttons">
+        <paper-icon-button 
+          dialog-dismiss
+          class="red"
+          icon="close" 
+          title="Close dialog">
+        </paper-icon-button>               
+        <paper-icon-button
+          class="gray" 
+          icon="cached" 
+          title="Clear fields">
+        </paper-icon-button>
+        <paper-icon-button
+          dialog-confirm
+          class="green"
+          icon="done" 
+          title="Add a store">
+        </paper-icon-button>
+      </div>
+    </paper-dialog>
+    
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'store-header',
+
+        properties: {
+          title: {
+            type: String,
+            value: 'Header!'
+          },
+          description: {
+            type: String,
+            value: 'Lorem ipsum dolor sit amet.'
+          }       
+        },
+
+        ready: function() {
+          
+        }
+      });
+    })();
+    
+    function clickHandler(e) {
+      var button = e.target;
+      while (!button.hasAttribute('data-dialog') && button !== document.body) {
+        button = button.parentElement;
+      }
+
+      if (!button.hasAttribute('data-dialog')) {
+        return;
+      }
+
+      var id = button.getAttribute('data-dialog');
+      var dialog = document.getElementById(id);
+      if (dialog) {
+        dialog.open();
+      }
+    }
+  </script>
+</dom-module>
