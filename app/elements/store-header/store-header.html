@@ -7,6 +7,7 @@
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
 
 <dom-module id="store-header">
   <template>
@@ -79,12 +80,12 @@
       </div>
     </paper-card>
     
-    <paper-dialog id="add-store-actions" 
-      entry-animation="scale-up-animation" 
-      exit-animation="fade-out-animation" 
+    <paper-dialog id="add-store-actions"
       with-backdrop>
       <h2>Add a Store</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <paper-input label="Name" always-float-label required auto-validate error-message="Please set a name."></paper-input>
+      <paper-input label="Description" always-float-label required auto-validate error-message="Please enter a description."></paper-input>
+      <paper-input label="Location" always-float-label required auto-validate error-message="Please enter a location."></paper-input>
       <div class="buttons">
         <paper-icon-button 
           dialog-dismiss
@@ -101,7 +102,8 @@
           dialog-confirm
           class="green"
           icon="done" 
-          title="Add a store">
+          title="Add a store"
+          onclick="submit()">
         </paper-icon-button>
       </div>
     </paper-dialog>
@@ -128,7 +130,11 @@
 
         ready: function() {
           
-        }
+        },
+        
+        submit: function() {
+          alert("submit triggered");
+        },
       });
     })();
     
