@@ -80,12 +80,32 @@
       </div>
     </paper-card>
     
+    <!-- Add Store Dialog Prompt-->
     <paper-dialog id="add-store-actions"
       with-backdrop>
       <h2>Add a Store</h2>
-      <paper-input label="Name" always-float-label required auto-validate error-message="Please set a name."></paper-input>
-      <paper-input label="Description" always-float-label required auto-validate error-message="Please enter a description."></paper-input>
-      <paper-input label="Location" always-float-label required auto-validate error-message="Please enter a location."></paper-input>
+      <paper-input 
+        label="Name" 
+        value="{{storeDetails.name}}" 
+        error-message="Please set a name."
+        always-float-label 
+        required 
+        auto-validate>
+      </paper-input>
+      <paper-input 
+        label="Description" 
+        value="{{storeDetails.description}}" 
+        auto-validate error-message="Please enter a description."
+        always-float-label 
+        required>
+      </paper-input>
+      <paper-input 
+        label="Location" 
+        value="{{storeDetails.location}}"
+        auto-validate error-message="Please enter a location." 
+        always-float-label 
+        required>
+      </paper-input>
       <div class="buttons">
         <paper-icon-button 
           dialog-dismiss
@@ -103,11 +123,10 @@
           class="green"
           icon="done" 
           title="Add a store"
-          onclick="submit()">
+          on-click="submit">
         </paper-icon-button>
       </div>
-    </paper-dialog>
-    
+    </paper-dialog>    
   </template>
 
   <script>
@@ -116,7 +135,6 @@
 
       Polymer({
         is: 'store-header',
-
         properties: {
           title: {
             type: String,
@@ -125,16 +143,23 @@
           description: {
             type: String,
             value: 'Lorem ipsum dolor sit amet.'
-          }       
+          },
+          storeDetails: {
+            type: Object,
+            value: { 
+              'name': '', 
+              'description': '', 
+              'location': '',
+            },
+          },           
         },
-
         ready: function() {
           
         },
-        
         submit: function() {
-          alert("submit triggered");
-        },
+          console.log('submit triggered');
+          console.log('Store name: ' + this.storeDetails.name);
+        }
       });
     })();
     
